@@ -7,6 +7,7 @@ These are nodes which are unique to one project or the other, or nodes that are 
 ![tg_compare_files GUI](/images/tg_compare_files_gui.jpg)
 
 ### Requirements:
+Python 3.x <br>
 Two Terragen project files saved to disk.
 
 ### Installation:
