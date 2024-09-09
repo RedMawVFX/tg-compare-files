@@ -12,7 +12,7 @@ Two Terragen project files saved to disk.
 ### Installation:
 In this repository you'll find two Python scripts.  You need both scripts for the GUI version to work. <br>
 tg_compare_files.py <br>
-tg_compare_files.cli.py <br>
+tg_compare_files_cli.py <br>
 
 ### Usage
 From the GUI <br>
