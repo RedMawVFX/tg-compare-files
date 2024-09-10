@@ -1,8 +1,10 @@
 # tg-compare-files
 A fully functionally Python script, which can be run from the command line or using a GUI.
 
-Given two Terragen project files as input, the script will return any "nodes of interest".  <br>
-These are nodes which are unique to one project or the other, or nodes that are common to both but have different values for a given parameter.
+Given two Terragen project files as input, the script will return any "nodes of interest" it finds.  <br>
+These are nodes which are unique to one project or the other, or nodes that are common to both but have different values for a given parameter. <br>
+Selecting a node of interest, will diplay the parameter values from each file. <br>
+
 
 ![tg_compare_files GUI](/images/tg_compare_files_gui.jpg)
 
@@ -25,7 +27,9 @@ From the GUI <br>
 From the command line <br>
 * The tg_compare_files_cli.py script requires two arguments to be passed to it.  These are the full path and filenames of the two Terragen project files to be compared.
 * Example: tg_compare_files_cli.py MyTerragenProject.tgd MyOtherTerragenProject.tgd
-* The output from the script will be diplayed on the terminal.
+* The output from the script will be diplayed on the terminal. 
+<br><br>
+![tg_compare_files_cli output example](/images/tg_compare_files_cli_output.jpg)
 
-
-
+### Known Issues:
+* Currently the animation data block and group nodes are not displayed.
