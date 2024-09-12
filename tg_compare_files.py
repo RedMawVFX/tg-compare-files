@@ -24,6 +24,9 @@ frame4.grid(row=2,column=0,padx=4,pady=4,sticky="WENS")
 frame1.columnconfigure(0,weight=1)
 frame2.columnconfigure(0,weight=1)
 
+colour_search_with_value = "#E8D7F2" # light purple
+colour_search_without_value = ""
+
 def popup_info(message_title,message_description):
     messagebox.showinfo(title=message_title,message=message_description)
 
@@ -130,9 +133,18 @@ def populate_treeview(reselect_last_known):
                 else:
                     summary = str(problems) + " differences found"
             summary_tuple = ((str(key)),(summary))
-            id = treeview.insert("",END,values=summary_tuple)
+            id = insert_with_tag(summary_tuple)
             if key == last_known_selection and reselect_last_known:
                 treeview.selection_set(id)
+
+def insert_with_tag(summary_tuple):
+    search_term = search_var.get()
+    id = None
+    if len(search_term) > 0:
+        id = treeview.insert("",END,values=summary_tuple,tags=('with_value',))
+    else:
+        id = treeview.insert("",END,values=summary_tuple,tags=('without_value'))
+    return id
 
 def filter_current_dict(event=None):
     last_known_selection = get_last_known_selection()
@@ -154,13 +166,13 @@ def filter_current_dict(event=None):
                 # insert by selected filter type
                 id = None # init
                 if sifted == 1 and "difference" in summary_tuple[1]: # attributes
-                    id = treeview.insert("",END,values=summary_tuple)
+                    id = insert_with_tag(summary_tuple)
                 elif sifted == 2 and "unique to file 1" in summary_tuple[1]: # file 1
-                    id = treeview.insert("",END,values=summary_tuple)
+                    id = insert_with_tag(summary_tuple)
                 elif sifted == 3 and "unique to file 2" in summary_tuple[1]: # file 2
-                        id = treeview.insert("",END,values=summary_tuple)
+                    id = insert_with_tag(summary_tuple)
                 elif sifted == 0:
-                    id = treeview.insert("",END,values=summary_tuple) # all
+                    id = insert_with_tag(summary_tuple)
 
                 if key == last_known_selection and id != None:
                     treeview.selection_set(id)
@@ -271,7 +283,7 @@ filter_by3_rb.grid(row=0,column=2,padx=4,pady=4,sticky="w")
 filter_by4_rb.grid(row=0,column=3,padx=4,pady=4,sticky="w")
 
 Label(frame4,text="Search pattern: ").grid(row=1,column=0,padx=4,pady=4,sticky='w')
-search_e = Entry(frame4,textvariable=search_var)
+search_e = Entry(frame4,textvariable=search_var,bg=colour_search_with_value)
 search_e.grid(row=1,column=1,padx=4,pady=4,sticky='w')
 search_e.bind("<KeyRelease>", filter_current_dict)
 clear_b = Button(frame4,text="Clear",command=on_clear)
@@ -286,6 +298,8 @@ treeview.configure(yscrollcommand=treeview_vsb.set,xscrollcommand=treeview_hsb.s
 treeview_vsb.grid(row=0,column=1,sticky='ns')
 treeview_hsb.grid(row=1,column=0,sticky='ew')
 treeview.bind("<<TreeviewSelect>>", treeview_display_node_params)
+treeview.tag_configure('with_value',background=colour_search_with_value)
+treeview.tag_configure('without_value',background=colour_search_without_value)
 
 # frame 2 - text widget for attribute values
 attributes_of_interest_tb = Text(frame2,width=60,height=12)
