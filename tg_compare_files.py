@@ -12,7 +12,7 @@ gui.title(os.path.basename(__file__))
 frame0 = LabelFrame(gui,text="Select files to compare")
 frame3 = LabelFrame(gui,text="Sort options")
 frame4 = LabelFrame(gui,text="Filter options")
-frame1 = LabelFrame(gui,text="Nodes of interest")
+frame1 = LabelFrame(gui,text="Nodes of interest",width="500",height="270")
 frame2 = LabelFrame(gui,text="Attribute values")
 
 frame0.grid(row=0,column=0,padx=4,pady=4,sticky="WENS")
@@ -20,6 +20,8 @@ frame1.grid(row=3,column=0,padx=4,pady=4,sticky="WENS")
 frame2.grid(row=4,column=0,padx=4,pady=4,sticky="WENS")
 frame3.grid(row=1,column=0,padx=4,pady=4,sticky="WENS")
 frame4.grid(row=2,column=0,padx=4,pady=4,sticky="WENS")
+
+frame1.grid_propagate(False) # prevent frame from resizing to fit content
 
 frame1.columnconfigure(0,weight=1)
 frame2.columnconfigure(0,weight=1)
