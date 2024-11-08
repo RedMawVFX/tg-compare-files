@@ -415,6 +415,7 @@ def on_clear() -> None:
     update_text_content(file_num=0, text=" ")
     update_compare_by_path(0)
     update_nodes_of_interest()
+    filter_nodes_of_interest()
     file1_node_params_dict.clear()
     file2_node_params_dict.clear()
     nodes_of_interest_last_known_selection = None
