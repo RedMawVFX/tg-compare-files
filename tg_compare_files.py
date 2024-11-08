@@ -7,7 +7,7 @@ from tkinter import messagebox
 import xml.etree.ElementTree as ET
 
 gui = tk.Tk()
-gui.geometry("710x942")
+gui.geometry("710x960")
 gui.title(os.path.basename(__file__))
 
 file_selection_frame = tk.LabelFrame(gui, text = "Select files to compare")
@@ -407,10 +407,12 @@ def on_clear() -> None:
     Returns:
         None: This function does not return any value.
     '''
-    global file1_node_params_dict, file2_node_params_dict, nodes_of_interest_last_known_selection
+    global file1_node_params_dict, file2_node_params_dict, nodes_of_interest_last_known_selection, file1_node_text_content, file2_node_text_content
     search_var.set("")
     clear_results()
-    update_text_content(file_num=0, text="")
+    file1_node_text_content = " "
+    file2_node_text_content = " "
+    update_text_content(file_num=0, text=" ")
     update_compare_by_path(0)
     update_nodes_of_interest()
     file1_node_params_dict.clear()
@@ -576,11 +578,11 @@ def update_results_from_node_of_interest() -> None:
         if element1 is not None:
             update_text_content(1, element1.text)
         else:
-            update_text_content(1, "")
+            update_text_content(1, " ")
         if element2 is not None:
             update_text_content(2, element2.text)
         else:
-            update_text_content(2, "")
+            update_text_content(2, " ")
 
 def update_results_from_node_of_interest_with_event(event) -> None:
     '''
@@ -670,7 +672,7 @@ def build_param_dict(current_item, file_num) -> None:
     '''
     global file1_node_params_dict, file2_node_params_dict, file1_node_text_content, file2_node_text_content
     if file_num == 1:
-        file1_node_text_content = ""
+        file1_node_text_content = " "
         file1_node_params_dict.clear()
         element = find_child_by_path(file1_root, "/", find_path=current_item)
         if element is not None:
@@ -681,7 +683,7 @@ def build_param_dict(current_item, file_num) -> None:
                 value = element.get(key)
                 file1_node_params_dict[key] = value
     else:
-        file2_node_text_content = ""
+        file2_node_text_content = " "
         file2_node_params_dict.clear()
         element = find_child_by_path(file2_root, "/", find_path=current_item)
         if element is not None:
@@ -782,13 +784,13 @@ file1_label.set("File 1")
 file1_node_paths = []
 file1_root = None # Element object for parsed file
 file1_node_params_dict = {}
-file1_node_text_content = ""
+file1_node_text_content = " "
 file2_label = tk.StringVar()
 file2_label.set("File 2")
 file2_node_paths = []
 file2_root = None
 file2_node_params_dict = {}
-file2_node_text_content = ""
+file2_node_text_content = " "
 search_var = tk.StringVar()
 search_var.set("")
 filter_by_var = tk.IntVar()
