@@ -1,4 +1,9 @@
 # tg-compare-files
+&#9888; This Python script is now part of the <b>redmaw-tg-toolkit</b> repository, and will no longer be developed as a stand-alone script in this repository.
+
+Click [here](https://github.com/RedMawVFX/redmaw-tg-toolkit) for the redmaw-tg-toolkit repository.<br> 
+Click [here](https://github.com/RedMawVFX/redmaw-tg-toolkit/tree/main/scripts/tg-compare-files) to go directly to the <i>tg-compare-files</i> folder in the redmaw-tg-toolkit.
+<hr>
 A fully functionally Python script, which can be run from the command line or using a GUI.
 
 The script provides two modes of operation. <br> 
